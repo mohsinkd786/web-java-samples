@@ -1,43 +1,35 @@
 package com.ibm.java.servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ibm.java.beans.Employ;
-import com.ibm.java.service.EmployService;
-
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Dashboard
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/dashboard")
+public class Dashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Login() {
+	public Dashboard() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	private EmployService service;
-
-	@Override
-	public void init() {
-		service = new EmployService();
-	}
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Login DO GET");
+		System.out.println("Dashboard GET");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -46,14 +38,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-			List<Employ> emps = service.fetchAll();
-			if (emps != null) {
-				request.setAttribute("emps", emps);
-				request.getRequestDispatcher("WEB-INF/views/dashboard.jsp").forward(request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 }

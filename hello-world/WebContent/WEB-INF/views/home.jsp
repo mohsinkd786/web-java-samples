@@ -24,8 +24,16 @@ div input[type="submit"] {
 	<div>
 		<%=request.getAttribute("message")%>
 	</div>
+
+	<%
+		if (request.getAttribute("isLoggedIn") != null) {
+	%>
+	<div><%=request.getAttribute("isLoggedIn")%></div>
+	<%
+		}
+	%>
 	<div>
-		<form method="POST" action="/hello-world/login">
+		<form method="POST" action="login">
 			<div>
 				<input type="text" name="username" placeholder="Username" />
 			</div>

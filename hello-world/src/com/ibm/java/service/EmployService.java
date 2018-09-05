@@ -3,10 +3,11 @@ package com.ibm.java.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ibm.java.api.EmployServiceI;
 import com.ibm.java.beans.Employ;
 import com.ibm.java.dao.EmployDAO;
 
-public class EmployService {
+public class EmployService implements EmployServiceI {
 	private EmployDAO dao;
 	{
 		dao = new EmployDAO();
@@ -32,11 +33,12 @@ public class EmployService {
 		dao.employTransact(t);
 	}
 
-	public List<Employ> fetchEmployByName(Employ t) throws SQLException {
+	@Override
+	public boolean fetchEmployByName(Employ t) throws SQLException {
 		if (dao.fetchEmployByName(t) != null) {
-			return dao.fetchAll();
+			return true;
 		} else {
-			return null;
+			return false;
 		}
 	}
 
