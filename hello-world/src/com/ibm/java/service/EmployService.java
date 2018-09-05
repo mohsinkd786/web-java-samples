@@ -32,11 +32,11 @@ public class EmployService {
 		dao.employTransact(t);
 	}
 
-	public String fetchEmployByName(Employ t) throws SQLException {
+	public List<Employ> fetchEmployByName(Employ t) throws SQLException {
 		if (dao.fetchEmployByName(t) != null) {
-			return "Logged In";
+			return dao.fetchAll();
 		} else {
-			return "Please try with valida credentials";
+			return null;
 		}
 	}
 
